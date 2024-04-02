@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import {
   useGetPokemonCharacteristicsQuery,
-  useGetCharacteristicTransletQuery,
 } from "../../services/pokemonList";
 import { getRandomIndexes } from '../../helpers/getRandomIndexes';
 import { Ability } from '../../types/Pokemon';
@@ -21,7 +20,6 @@ export const PokemonInfo: React.FC<Props> = React.memo(({
   pokemonAbilities,
 }) => {
   const { data: characteristics } = useGetPokemonCharacteristicsQuery(pokemonId);
-  const { data: translete } = useGetCharacteristicTransletQuery(pokemonId);
   const [pokemonCharacters, setPokemonCharacters] = useState<Description[]>([]);
 
   useEffect(() => {
