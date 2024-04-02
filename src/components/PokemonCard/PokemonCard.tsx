@@ -17,7 +17,7 @@ export const PokemonCard = ({ pokemonName }: { pokemonName: string }) => {
         <button
           type="button"
           className="pokemonCard__button"
-          onClick={() => handlePokemonClick()}
+          onClick={handlePokemonClick}
         >
           <h2>{pokemonName}</h2>
         </button>
