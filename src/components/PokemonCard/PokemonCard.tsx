@@ -1,7 +1,7 @@
-import { useState } from "react";
-import { useGetPokemonByNameQuery } from "../../services/pokemonList";
-import { PokemonInfo } from "./PokemonInfo";
-import "./PokemonCard.scss";
+import { useState } from 'react';
+import { useGetPokemonByNameQuery } from '../../services/pokemonApi';
+import { PokemonInfo } from '../PokemonInfo';
+import './PokemonCard.scss';
 
 export const PokemonCard = ({ pokemonName }: { pokemonName: string }) => {
   const [showInfo, setShowInfo] = useState(false);
@@ -31,10 +31,10 @@ export const PokemonCard = ({ pokemonName }: { pokemonName: string }) => {
         ) : pokemonDetails && (
           <div className="pokemonCard__description">
             <PokemonInfo
-              pokemonId={pokemonDetails.id}
               pokemonName={pokemonDetails.name}
               pokemonImg={pokemonDetails.sprites.front_shiny || ''}
               pokemonAbilities={pokemonDetails.abilities}
+              pokemonStats={pokemonDetails.stats}
             />
           </div>
         )

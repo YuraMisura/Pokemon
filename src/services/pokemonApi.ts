@@ -1,7 +1,8 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 import { Pokemon } from '../types/Pokemon';
-import { PokemonCharacteristic } from '../types/PokemonCharacteristic';
 import { PokemonList } from '../types/PokemonList';
+import { PokemonStats } from '../types/PokemonStats';
+import { PokemonCharacteristics } from '../types/PokemonCharacteristics';
 
 export const pokemonApi = createApi({
   reducerPath: 'pokemonApi',
@@ -14,11 +15,11 @@ export const pokemonApi = createApi({
     getPokemonByName: builder.query<Pokemon, string>({
       query: (pokemonName) => `pokemon/${pokemonName}/`,
     }),
-    getPokemonCharacteristics: builder.query<PokemonCharacteristic, number>({
-      query: (pokemonId) => `characteristic/${pokemonId}`,
+    getPokemonState: builder.query<PokemonStats, string>({
+      query: (statName) => `stat/${statName}`,
     }),
-    getCharacteristicTranslet: builder.query({
-      query: (pokemonId) => `language/${pokemonId}`,
+    getPokemonCharacteristics: builder.query<PokemonCharacteristics, number>({
+      query: (characteristicsId) => `characteristic/${characteristicsId}`,
     }),
   }),
 })
@@ -26,6 +27,6 @@ export const pokemonApi = createApi({
 export const { 
   useGetPokemonListQuery, 
   useGetPokemonByNameQuery,
+  useGetPokemonStateQuery,
   useGetPokemonCharacteristicsQuery,
-  useGetCharacteristicTransletQuery,
  } = pokemonApi;

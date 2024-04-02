@@ -1,35 +1,31 @@
 import React, { useEffect, useState } from 'react';
-import {
-  useGetPokemonCharacteristicsQuery,
-} from "../../services/pokemonList";
 import { getRandomIndexes } from '../../helpers/getRandomIndexes';
-import { Ability } from '../../types/Pokemon';
-import { Description } from '../../types/PokemonCharacteristic';
+import { Ability, Stat } from '../../types/layout';
+import { PokemonCharacteristics } from './PokemonCharacteristics';
 
 type Props = {
-  pokemonId: number,
   pokemonName: string,
   pokemonImg: string,
   pokemonAbilities: Ability[],
+  pokemonStats: Stat[],
 };
 
 export const PokemonInfo: React.FC<Props> = React.memo(({
-  pokemonId,
   pokemonName,
   pokemonImg,
   pokemonAbilities,
+  pokemonStats,
 }) => {
-  const { data: characteristics } = useGetPokemonCharacteristicsQuery(pokemonId);
-  const [pokemonCharacters, setPokemonCharacters] = useState<Description[]>([]);
+  const [pokemonCharacteristics, setPokemonCharacteristics] = useState<Stat[]>([]);
 
   useEffect(() => {
-    if (characteristics) {
-      const randomIndexes = getRandomIndexes(characteristics.descriptions.length, 4);
-      const randomElements = randomIndexes.map(index => characteristics.descriptions[index]);
+    if (pokemonStats) {
+      const randomIndexes = getRandomIndexes(pokemonStats.length, 4);
+      const randomElements = randomIndexes.map(index => pokemonStats[index]);
 
-      setPokemonCharacters(randomElements);
+      setPokemonCharacteristics(randomElements);
     }
-  }, [characteristics]);
+  }, []);
 
   return (
     <>
@@ -56,12 +52,11 @@ export const PokemonInfo: React.FC<Props> = React.memo(({
 
       <ul>
         <span className="pokemonCard__descriptions-text">Characteristics:</span>
-        {pokemonCharacters.map(el => (
-          <li key={el.description}>
-            {el.description}
-          </li>
+        {pokemonCharacteristics.map(el => (
+          <PokemonCharacteristics statName={el.stat.name} key={el.stat.name} />
         ))}
       </ul>
     </>
   );
 });
+
