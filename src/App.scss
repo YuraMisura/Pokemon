@@ -1,0 +1,43 @@
+@import './styles/utils.scss';
+
+.app {
+  background-color: bisque;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  padding-block: 20px;
+
+  &__button-wrap {
+    display: flex;
+    gap: 30px;
+  }
+
+  &__button {
+    border: 1px solid black;
+    padding: 10px;
+    border-radius: 50%;
+    background-color: inherit;
+    cursor: pointer;
+
+    &:hover {
+      transform: scale(1.2);
+      background-color: aqua;
+      border: 1px solid burlywood;
+    }
+  }
+}
+
+.pokemonList {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  &__items {
+    border: 1px solid black;
+    border-radius: 10%;
+  }
+}
